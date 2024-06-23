@@ -1,0 +1,26 @@
+name: Test Project
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest # environment
+    steps:
+      # SECT: actions/checkout (리포지토리의 소스 코드를 워크플로우 실행 환경으로 체크아웃(다운로드)하는 기능)
+      - name: Get code
+        uses: actions/checkout@v3 # uses > action & run:  run > shell script (command)
+
+      # SECT: Install NODE
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with: # configuration (액션에 전달할 매개변수나 설정값을 지정할 때 사용됩니다. with 키워드 아래에 나열된 키-값 쌍은 해당 액션에 필요한 추가적인 설정을 제공)
+          node-version: 18
+
+      # SECT: Install Dependencies
+      - name: Install dependencies
+        run: npm ci
+
+      # SECT: Run Test
+      - name: Run Tests
+        run: npm test
+
+
+
