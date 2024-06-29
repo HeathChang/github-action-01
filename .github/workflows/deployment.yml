@@ -4,6 +4,20 @@ on: # multiple events for action types.
     types:
       - opened
   workflow_dispatch:
+  push:
+    # branches: 특정 브랜치에 푸시가 발생했을 때 워크플로우를 트리거
+    branches:
+      - main # only pushes to the main branch will trigger workflow
+      - 'dev-*' # dev-new dev-this-is-new
+      - 'feat/**' # feat/new  feat/new/button
+
+    # paths-ignore:  해당 디렉토리 내의 변경은 워크플로우를 트리거 안함.
+    paths-ignore:
+      - '.github/workflows/*'
+
+    # paths:  해당 디렉토리 내 변경이 있을 때만 워크플로우를 트리거하도록 설정
+#    paths:
+#      - 'src/**'
 
 
 # certain branch에 event 있을 경우.
